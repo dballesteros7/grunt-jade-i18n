@@ -95,7 +95,7 @@ module.exports = (grunt) ->
 
   addLocaleDirnameDest = (file, locale, outputExt) ->
     if ext = getExtension file.dest
-      dest = path.join path.dirname(file.dest), locale, path.basename(file.dest, ext) + setExtension ext
+      dest = path.join file.orig.dest, locale, path.dirname(path.relative(file.orig.dest, file.dest)), path.basename(file.dest, ext) + setExtension ext
     else
       if /(\/|\*+)$/i.test file.dest
         base = file.dest.split('/')
